@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-//const generateMarkdown = require("./utils/generateMarkdown.js")
+const generateMarkdown = require("./utils/generateMarkdown.js")
 
 // TODO: Create an array of questions for user input
 const questions = ["What is your GitHub username?", "What is your email address?", "What is your project's name?", "Please write a short description of your project:", "What kind of license should your project have?", "What command should be run to install dependencies?", "What command should be run to run tests?", "What does the user need to know about using the repo?", "What does the user need to know about contributing to the project?"];
@@ -12,19 +12,19 @@ function writeToFile(fileName, data) {
 	let fileInput = ""
 	fileInput += `# ${data.projectName}\n`;
 
-	//fileInput += generateMarkdown.renderLicenseBadge();
+	fileInput += generateMarkdown.renderLicenseBadge(data.license);
 
 	fileInput += `## Description\n${data.description}\n`;
 
 	fileInput += `## Table of Contents\n* [Installation](#installation)\n* [Usage](#usage)\n`;
-	//fileInput += generateMarkdown.renderLicenseLink();
+	fileInput += generateMarkdown.renderLicenseLink(data.license);
 	fileInput += `* [Contributing](#contributing)\n* [Tests](#tests)\n* [Questions](#questions)\n`;
 
 	fileInput += `## Installation\nTo install necessary dependencies, run the following command:\n\`\`\`\n${data.install}\n\`\`\`\n`;
 	
 	fileInput += `## Usage\n${data.usage}\n`;
 
-	//fileInput += generateMarkdown.renderLicenseSection();
+	fileInput += generateMarkdown.renderLicenseSection(data.license);
 
 	fileInput += `## Contributing\n${data.contribute}\n`;
 

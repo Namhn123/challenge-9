@@ -4,7 +4,7 @@ function renderLicenseBadge(license) {
   if (license === "None") {
     return("");
   } else {
-    
+    return(`![GitHub license](https://img.shields.io/badge/license-${license.replaceAll(" ", "_")}-blue.svg)\n`)
   }
 }
 
@@ -14,7 +14,7 @@ function renderLicenseLink(license) {
   if (license === "None") {
     return("");
   } else {
-    return(`* [License](#license)\n`);
+    return("* [License](#license)\n");
   }
 }
 
@@ -24,7 +24,7 @@ function renderLicenseSection(license) {
   if (license === "None") {
     return("");
   } else {
-    return(`## License\n${license}`);
+    return(`## License\nThis project is licensed under the ${license} license.\n`);
   }
 }
 
@@ -33,4 +33,4 @@ function generateMarkdown(data) {
   return `# ${data.title}`;
 }
 
-module.exports = generateMarkdown;
+module.exports = {renderLicenseBadge, renderLicenseLink, renderLicenseSection, generateMarkdown};
